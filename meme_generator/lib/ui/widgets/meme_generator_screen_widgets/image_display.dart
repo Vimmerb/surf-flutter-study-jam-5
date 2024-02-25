@@ -1,27 +1,21 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:flutter/material.dart';
 
-import 'package:meme_generator/ui/widgets/error_icon.dart';
-
+/// Вывод изображения мема
 class ImageDisplay extends StatelessWidget {
   const ImageDisplay({
     Key? key,
-    required this.imageUrl,
+    required this.decoration,
     required this.isImageLoaded,
+    required this.imageUrl,
   }) : super(key: key);
 
-  final String imageUrl;
+  final BoxDecoration decoration;
   final bool isImageLoaded;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    final decoration = BoxDecoration(
-      border: Border.all(
-        color: Colors.white,
-        width: 2,
-      ),
-    );
-
     return SizedBox(
       height: 200,
       child: DecoratedBox(
@@ -34,14 +28,28 @@ class ImageDisplay extends StatelessWidget {
                       imageUrl,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                        return const ErrorIcon();
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 80),
+                          child: Icon(
+                            Icons.error,
+                            size: 50,
+                            color: Colors.white,
+                          ),
+                        );
                       },
                     )
                   : Image.file(
                       File(imageUrl),
                       fit: BoxFit.cover,
                     )
-              : const ErrorIcon(),
+              : const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 80),
+                  child: Icon(
+                    Icons.error,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+                ),
         ),
       ),
     );

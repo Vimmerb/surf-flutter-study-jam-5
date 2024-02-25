@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:meme_generator/ui/screens/meme_generator_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'models.dart/meme_generator_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      // Создаем экземпляр MemeGeneratorModel
+      create: (context) => MemeGeneratorModel(),
+      child: const MyApp()));
 }
 
-/// App,s main widget.
 class MyApp extends StatelessWidget {
-  /// Constructor for [MyApp].
   const MyApp({Key? key}) : super(key: key);
 
   @override

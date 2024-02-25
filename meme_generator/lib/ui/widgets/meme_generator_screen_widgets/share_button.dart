@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meme_generator/common/text_styles.dart';
 
 class ShareButton extends StatelessWidget {
-  const ShareButton({
-    Key? key,
-    required this.onPressed,
-  }) : super(key: key);
+  final void Function() onPressed;
 
-  final VoidCallback onPressed;
+  const ShareButton({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

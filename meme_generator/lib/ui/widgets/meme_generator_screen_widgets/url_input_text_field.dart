@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:meme_generator/common/text_styles.dart';
 
 class UrlInputTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final Function(String) onSubmitted;
+  final Function() onIconPressed;
+
   const UrlInputTextField({
     Key? key,
     required this.controller,
@@ -9,14 +13,10 @@ class UrlInputTextField extends StatelessWidget {
     required this.onIconPressed,
   }) : super(key: key);
 
-  final TextEditingController controller;
-  final ValueChanged<String> onSubmitted;
-  final VoidCallback onIconPressed;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50),
+      padding: const EdgeInsets.only(top: 30),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
@@ -30,7 +30,6 @@ class UrlInputTextField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.deepPurple, width: 2),
             borderRadius: BorderRadius.zero,
           ),
-
           // Иконка для выбора изображения из галереи
           suffixIcon: IconButton(
             onPressed: onIconPressed,
@@ -41,11 +40,7 @@ class UrlInputTextField extends StatelessWidget {
             ),
           ),
         ),
-        style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Impact',
-          fontSize: 16,
-        ),
+        style: textStyleImpact16white(),
         // Вызываем функцию загрузки изображения
         onSubmitted: onSubmitted,
       ),
